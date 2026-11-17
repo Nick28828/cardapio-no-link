@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Página não encontrada</title>
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#100C12;color:#F5EFF2;font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:24px}
+.c{max-width:420px;text-align:center}.e{font-size:56px}h1{font-size:26px;margin:8px 0}p{color:#C9BECB}
+a{display:inline-block;margin-top:18px;padding:14px 22px;border-radius:14px;background:#FFC21A;color:#1A1300;font-weight:700;text-decoration:none}
+</style></head><body><div class="c" id="c"><div class="e">🔎</div><h1>Abrindo o cardápio…</h1><p id="t">Só um instante.</p></div>
+<script>
+var CAMINHOS = ["/demo/acai-roxinho/", "/demo/atelie-doce-lar/", "/demo/pizzaria-forno-da-vila/", "/previa/albrana-itapevi/", "/previa/andorinha-itapevi/", "/previa/anthonelys-jandira/", "/previa/ap18-cotia/", "/previa/bella-vitta-carapicuiba/", "/previa/bigodin-burger-itapevi/", "/previa/bom-amigo-itapevi/", "/previa/bx-burger-itapevi/", "/previa/campy-carapicuiba/", "/previa/central-burger-carapicuiba/", "/previa/da-hamburgueria-itapevi/", "/previa/dangustana-jandira/", "/previa/don-parmesano-jandira/", "/previa/eatburger-carapicuiba/", "/previa/esmag-burguer-cotia/", "/previa/garage-359-barueri/", "/previa/house-70-carapicuiba/", "/previa/jc-pizzaria-jandira/", "/previa/jk-burguer-cotia/", "/previa/lisboa-jandira/", "/previa/luks-burguer-itapevi/", "/previa/mimi-carapicuiba/", "/previa/mineiros-burguer-cotia/", "/previa/na-brasa-villas-carapicuiba/", "/previa/pinguim-jandira/", "/previa/point-da-pizza-itapevi/", "/previa/skalone-jandira/"];
+(function () {
+  var p = decodeURIComponent(location.pathname).toLowerCase().replace(/\/+$/, "") + "/";
+  // tira pontuação que às vezes gruda no fim do link no WhatsApp
+  p = p.replace(/[).,;:!?"']+\/$/, "/");
+  var achado = CAMINHOS.filter(function (c) { return c === p; })[0]
+    || (function () { var u = CAMINHOS.filter(function (c) { return c.indexOf(p.replace(/\/$/, "")) === 0 && p.length > 9; }); return u.length === 1 ? u[0] : null; })()
+    || (function () { var u = CAMINHOS.filter(function (c) { return p.indexOf(c.replace(/\/$/, "")) === 0; }); return u.length === 1 ? u[0] : null; })();
+  if (achado) { location.replace(achado + location.search + location.hash); return; }
+  document.getElementById("c").innerHTML = '<div class="e">🍔</div><h1>Esse link não abriu</h1><p>Ele pode ter sido cortado no caminho. Peça o link de novo para quem te mandou, ou veja como funciona o cardápio:</p><a href="/">Ver o Cardápio no Link</a>';
+})();
+</script></body></html>
