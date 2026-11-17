@@ -9,13 +9,15 @@ a{display:inline-block;margin-top:18px;padding:14px 22px;border-radius:14px;back
 <script>
 var CAMINHOS = ["/demo/acai-roxinho/", "/demo/atelie-doce-lar/", "/demo/pizzaria-forno-da-vila/", "/previa/albrana-itapevi/", "/previa/andorinha-itapevi/", "/previa/anthonelys-jandira/", "/previa/ap18-cotia/", "/previa/bella-vitta-carapicuiba/", "/previa/bigodin-burger-itapevi/", "/previa/bom-amigo-itapevi/", "/previa/bx-burger-itapevi/", "/previa/campy-carapicuiba/", "/previa/central-burger-carapicuiba/", "/previa/da-hamburgueria-itapevi/", "/previa/dangustana-jandira/", "/previa/don-parmesano-jandira/", "/previa/eatburger-carapicuiba/", "/previa/esmag-burguer-cotia/", "/previa/garage-359-barueri/", "/previa/house-70-carapicuiba/", "/previa/jc-pizzaria-jandira/", "/previa/jk-burguer-cotia/", "/previa/lisboa-jandira/", "/previa/luks-burguer-itapevi/", "/previa/mimi-carapicuiba/", "/previa/mineiros-burguer-cotia/", "/previa/na-brasa-villas-carapicuiba/", "/previa/pinguim-jandira/", "/previa/point-da-pizza-itapevi/", "/previa/skalone-jandira/"];
 (function () {
-  var p = decodeURIComponent(location.pathname).toLowerCase().replace(/\/+$/, "") + "/";
+  // no GitHub Pages o site fica em /cardapio-no-link/; no Netlify, na raiz
+  var BASE = /^\/cardapio-no-link(\/|$)/i.test(location.pathname) ? "/cardapio-no-link" : "";
+  var p = decodeURIComponent(location.pathname).slice(BASE.length).toLowerCase().replace(/\/+$/, "") + "/";
   // tira pontuação que às vezes gruda no fim do link no WhatsApp
   p = p.replace(/[).,;:!?"']+\/$/, "/");
   var achado = CAMINHOS.filter(function (c) { return c === p; })[0]
     || (function () { var u = CAMINHOS.filter(function (c) { return c.indexOf(p.replace(/\/$/, "")) === 0 && p.length > 9; }); return u.length === 1 ? u[0] : null; })()
     || (function () { var u = CAMINHOS.filter(function (c) { return p.indexOf(c.replace(/\/$/, "")) === 0; }); return u.length === 1 ? u[0] : null; })();
-  if (achado) { location.replace(achado + location.search + location.hash); return; }
-  document.getElementById("c").innerHTML = '<div class="e">🍔</div><h1>Esse link não abriu</h1><p>Ele pode ter sido cortado no caminho. Peça o link de novo para quem te mandou, ou veja como funciona o cardápio:</p><a href="/">Ver o Cardápio no Link</a>';
+  if (achado) { location.replace(BASE + achado + location.search + location.hash); return; }
+  document.getElementById("c").innerHTML = '<div class="e">🍔</div><h1>Esse link não abriu</h1><p>Ele pode ter sido cortado no caminho. Peça o link de novo para quem te mandou, ou veja como funciona o cardápio:</p><a href="' + BASE + '/">Ver o Cardápio no Link</a>';
 })();
 </script></body></html>
